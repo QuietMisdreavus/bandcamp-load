@@ -6,6 +6,11 @@ tinkering with pieces that move me in that direction.
 
 ## running it
 
+first install rust, either from your package manager, [their website][], or [rustup][].
+
+[their website]: https://www.rust-lang.org/
+[rustup]: https://rustup.rs/
+
 ```sh
 git clone https://github.com/QuietMisdreavus/bandcamp-load
 cd bandcamp-load
