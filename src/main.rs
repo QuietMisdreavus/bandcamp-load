@@ -22,6 +22,7 @@ fn main() {
     if resp.status == StatusCode::Ok {
         let mut current = String::new();
         let mut trackinfo = String::new();
+        let mut artist = String::new();
         let mut in_data = false;
 
         for line in BufReader::new(resp).lines() {
@@ -52,6 +53,11 @@ fn main() {
                         let end = real_line.rfind(']').unwrap();
                         trackinfo = real_line[start..end+1].to_string();
                     }
+                    else if real_line.starts_with("artist") {
+                        let start = real_line.find('"').unwrap();
+                        let end = real_line.rfind('"').unwrap();
+                        artist = real_line[start+1..end].to_string();
+                    }
                 }
             }
         }
@@ -64,7 +70,7 @@ fn main() {
         let current = json::parse(&current).unwrap();
         let trackinfo = json::parse(&trackinfo).unwrap();
 
-        println!("{}, by {}", current["title"], current["artist"]);
+        println!("{}, by {}", current["title"], artist);
         println!("Released on {}", current["publish_date"]);
         println!("{}", current["about"]);
 
