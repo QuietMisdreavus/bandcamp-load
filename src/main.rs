@@ -72,7 +72,9 @@ fn main() {
 
         println!("{}, by {}", current["title"], artist);
         println!("Released on {}", current["publish_date"]);
-        println!("{}", current["about"]);
+        if !current["about"].is_null() {
+            println!("{}", current["about"]);
+        }
 
         println!("");
 
